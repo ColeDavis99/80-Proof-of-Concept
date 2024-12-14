@@ -13,8 +13,10 @@ const int dirPin = 2;
 const int stepPin = 3;
 
 // Stepper motor constants
-const int stepsPerRev = 6400;
-const int stepDelay = 50;
+const long stepsPerRev = 6400;
+const int stepDelay = 9;
+
+
 
 void setup(){
     //Set pinmodes
@@ -53,7 +55,7 @@ void loop(){
 
     // One counter-clockwise revolution
     digitalWrite(dirPin, LOW);
-    for (long i = 0; i < stepsPerRev; i++)
+    for (long i=0; i<stepsPerRev; i++)
     {
         digitalWrite(stepPin, HIGH);
         delayMicroseconds(stepDelay);
@@ -77,6 +79,11 @@ void loop(){
     digitalWrite(solTrgPinB1, LOW);
     digitalWrite(solTrgPinB2, LOW);
     delay(1000);
+
+
+    //Stops the stepper motor from sitting there and squealing without movement.
+    digitalWrite(stepPin, LOW);
+    digitalWrite(dirPin, LOW);
 
     while(1){}
 }
