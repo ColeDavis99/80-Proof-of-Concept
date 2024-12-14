@@ -26,6 +26,16 @@ void setup(){
     pinMode(solEnaPinB, OUTPUT);
     pinMode(dirPin, OUTPUT);
     pinMode(stepPin, OUTPUT);
+
+    //Activate ENA pins for L298N
+    digitalWrite(solEnaPinA, HIGH);
+    digitalWrite(solEnaPinB, HIGH);
+
+    //Initial L298N state
+    digitalWrite(solTrgPinA1, LOW);
+    digitalWrite(solTrgPinA2, LOW);
+    digitalWrite(solTrgPinB1, LOW);
+    digitalWrite(solTrgPinB2, LOW);
 }
 
 
@@ -39,16 +49,34 @@ void loop(){
         digitalWrite(stepPin, LOW);
         delayMicroseconds(stepDelay);
     }
+    delay(1000);
 
     // One counter-clockwise revolution
     digitalWrite(dirPin, LOW);
     for (long i = 0; i < stepsPerRev; i++)
     {
         digitalWrite(stepPin, HIGH);
-        delayMicroseconds(50);
+        delayMicroseconds(stepDelay);
         digitalWrite(stepPin, LOW);
-        delayMicroseconds(50);
+        delayMicroseconds(stepDelay);
     }
+    delay(1000);
+
+    //Open & close solenoid A
+    digitalWrite(solTrgPinA1, LOW);
+    digitalWrite(solTrgPinA2, HIGH);
+    delay(1000);
+    digitalWrite(solTrgPinA1, LOW);
+    digitalWrite(solTrgPinA2, LOW);
+    delay(1000);
+
+    //Open & close solenoid B
+    digitalWrite(solTrgPinB1, LOW);
+    digitalWrite(solTrgPinB2, HIGH);
+    delay(1000);
+    digitalWrite(solTrgPinB1, LOW);
+    digitalWrite(solTrgPinB2, LOW);
+    delay(1000);
 
     while(1){}
 }
