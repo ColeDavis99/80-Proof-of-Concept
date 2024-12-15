@@ -13,7 +13,7 @@ const int dirPin = 2;
 const int stepPin = 3;
 
 // Stepper motor constants
-const long stepsPerRev = 6400;
+const unsigned long stepsPerRev = 6400;
 const int stepDelay = 9;
 
 
@@ -43,44 +43,84 @@ void setup(){
 
 
 void loop(){
-    //One clockwise revolution
-    digitalWrite(dirPin, HIGH);
-    for(long i=0; i<stepsPerRev; i++){
-        digitalWrite(stepPin, HIGH);
-        delayMicroseconds(stepDelay);
-        digitalWrite(stepPin, LOW);
-        delayMicroseconds(stepDelay);
-    }
-    delay(1000);
+    //One revolution of movement away from stepper motor (push)
+//    digitalWrite(dirPin, HIGH);
+//    for(unsigned long i=0; i<stepsPerRev*315; i++){
+//        digitalWrite(stepPin, HIGH);
+//        delayMicroseconds(stepDelay);
+//        digitalWrite(stepPin, LOW);
+//        delayMicroseconds(stepDelay);
+//    }
+//    delay(1000);
 
-    // One counter-clockwise revolution
-    digitalWrite(dirPin, LOW);
-    for (long i=0; i<stepsPerRev; i++)
-    {
-        digitalWrite(stepPin, HIGH);
-        delayMicroseconds(stepDelay);
-        digitalWrite(stepPin, LOW);
-        delayMicroseconds(stepDelay);
-    }
-    delay(1000);
+    //One revolution of movement away from stepper motor (pull = HIGH)
+//    digitalWrite(dirPin, HIGH);
+//    for (long i=0; i<stepsPerRev*315; i++)
+//    {
+//        digitalWrite(stepPin, HIGH);
+//        delayMicroseconds(stepDelay);
+//        digitalWrite(stepPin, LOW);
+//        delayMicroseconds(stepDelay);
+//    }
+//    delay(1000);
 
     //Open & close solenoid A
-    digitalWrite(solTrgPinA1, LOW);
-    digitalWrite(solTrgPinA2, HIGH);
-    delay(1000);
-    digitalWrite(solTrgPinA1, LOW);
-    digitalWrite(solTrgPinA2, LOW);
+//    digitalWrite(solTrgPinA1, LOW);
+//    digitalWrite(solTrgPinA2, HIGH);
+//    delay(3000);
+//    digitalWrite(solTrgPinA1, LOW);
+//    digitalWrite(solTrgPinA2, LOW);
+//    delay(1000);
+//    
+//    //One revolution of movement away from stepper motor (push = LOW)
+//    digitalWrite(dirPin, LOW);
+//    for(unsigned long i=0; i<stepsPerRev*315; i++){
+//        digitalWrite(stepPin, HIGH);
+//        delayMicroseconds(stepDelay);
+//        digitalWrite(stepPin, LOW);
+//        delayMicroseconds(stepDelay);
+//    }
+//    delay(1000);
+//
+
+    digitalWrite(dirPin, LOW);
+    for(unsigned long i=0; i<stepsPerRev*315; i++){
+        digitalWrite(stepPin, HIGH);
+        delayMicroseconds(stepDelay);
+        digitalWrite(stepPin, LOW);
+        delayMicroseconds(stepDelay);
+    }
     delay(1000);
 
+    
     //Open & close solenoid B
-//    digitalWrite(solTrgPinB1, LOW);
-//    digitalWrite(solTrgPinB2, HIGH);
-//    delay(1000);
-//    digitalWrite(solTrgPinB1, LOW);
-//    digitalWrite(solTrgPinB2, LOW);
+    digitalWrite(solTrgPinB1, LOW);
+    digitalWrite(solTrgPinB2, HIGH);
+    delay(32000);
+    digitalWrite(solTrgPinB1, LOW);
+    digitalWrite(solTrgPinB2, LOW);
+    delay(1000);
+
+    //One revolution of movement away from stepper motor (pull = HIGH)
+//    digitalWrite(dirPin, HIGH);
+//    for (long i=0; i<stepsPerRev*315; i++)
+//    {
+//        digitalWrite(stepPin, HIGH);
+//        delayMicroseconds(stepDelay);
+//        digitalWrite(stepPin, LOW);
+//        delayMicroseconds(stepDelay);
+//    }
 //    delay(1000);
 
 
+    //Open & close solenoid A
+//    digitalWrite(solTrgPinA1, LOW);
+//    digitalWrite(solTrgPinA2, HIGH);
+//    delay(30000);
+//    digitalWrite(solTrgPinA1, LOW);
+//    digitalWrite(solTrgPinA2, LOW);
+//    delay(1000);
+//
 
 
     //Maybe stop the stepper motor from sitting there and squealing without movement?
