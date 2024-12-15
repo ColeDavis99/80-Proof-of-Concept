@@ -73,15 +73,17 @@ void loop(){
     delay(1000);
 
     //Open & close solenoid B
-    digitalWrite(solTrgPinB1, LOW);
-    digitalWrite(solTrgPinB2, HIGH);
-    delay(1000);
-    digitalWrite(solTrgPinB1, LOW);
-    digitalWrite(solTrgPinB2, LOW);
-    delay(1000);
+//    digitalWrite(solTrgPinB1, LOW);
+//    digitalWrite(solTrgPinB2, HIGH);
+//    delay(1000);
+//    digitalWrite(solTrgPinB1, LOW);
+//    digitalWrite(solTrgPinB2, LOW);
+//    delay(1000);
 
 
-    //Stops the stepper motor from sitting there and squealing without movement.
+
+
+    //Maybe stop the stepper motor from sitting there and squealing without movement?
     digitalWrite(stepPin, LOW);
     digitalWrite(dirPin, LOW);
 
