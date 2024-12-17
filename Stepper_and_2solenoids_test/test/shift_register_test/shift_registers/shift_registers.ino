@@ -54,7 +54,7 @@ void loop(){
 
     // ST_CP HIGH change LEDs
     digitalWrite(latchPin, HIGH);
-    delay(50);
+    delay(500);
   }
   
 //  for(int i=0; i<256; i++){
