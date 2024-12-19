@@ -25,5 +25,5 @@ public:
     // Setters
     void setxPos(short int arg_xPos);
     void setactivationNum(short int arg_activationNum);
-
+};
 #endif
