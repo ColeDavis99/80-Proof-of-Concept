@@ -15,7 +15,7 @@ public:
     //Parameterized constructor
     Solenoid(short int arg_activationNum, short int arg_xPos);
 
-    // Opens solenoid (pours) for "secs" seconds.
+    // Opens solenoid (pours) for X milliseconds.
     void Pour(int milliseconds);
 
     // Getters
