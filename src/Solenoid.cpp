@@ -1,3 +1,4 @@
+#include "arduino.h"
 #include "Solenoid.h"
 
 // Default Constructor
@@ -11,7 +12,10 @@ Solenoid::Solenoid(short int arg_activationNum, short int arg_xPos){
 
 // Opens solenoid (pours) for X milliseconds.
 void Solenoid::Pour(int milliseconds){
-    //TODO
+  digitalWrite(activationNum, HIGH);
+  delay(milliseconds);
+  digitalWrite(activationNum, LOW);
+  delay(milliseconds);
 }
 
 // Getters
