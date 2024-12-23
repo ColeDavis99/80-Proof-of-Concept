@@ -28,7 +28,6 @@ void Solenoid::Pour(int milliseconds){
   digitalWrite(latchPin, LOW);
 
   // Shift out "0" to register.
-  shiftOut(dataPin, clockPin, MSBFIRST, 0 >> 8);
   shiftOut(dataPin, clockPin, MSBFIRST, 0);
 
   // Output "0" so no more solenoid activation

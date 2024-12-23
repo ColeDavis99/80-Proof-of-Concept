@@ -11,7 +11,7 @@ const int numsToDisplay[16] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048
 
 
 Solenoid solenoidA(numsToDisplay[0], 0);
-Solenoid solenoidB(numsToDisplay[1], 0);
+Solenoid solenoidB(numsToDisplay[15], 0);
 
 
 void setup(){
@@ -25,7 +25,7 @@ void setup(){
 void loop(){
   //Pour solenoid A for one second.
     solenoidA.Pour(1000);
-    delay(3000);
+    delay(5000);
     solenoidB.Pour(1000);
-    delay(3000);
+    delay(5000);
 }
