@@ -1,29 +1,31 @@
-//Pin 1 is your output pin for the LED.
 #include "Header.h"
 #include "Solenoid.h"
 
-//Test 2: Instanciate a Solenoid object (kinda hijacking it for the LED) using the testPin variable from Header.h
-Solenoid testSolenoid(testPin, whatever);
-int fancyCtr = 0;
+//Shift registers
+const short int latchPin = 5;
+const short int clockPin = 6;
+const short int dataPin = 7;
+const int numsToDisplay[16] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};
+// uint16_t LED1 = 0b1000000000000000;
+
+
+
+Solenoid solenoidA(numsToDisplay[0], 0);
+Solenoid solenoidB(numsToDisplay[1], 0);
+
 
 void setup(){
-  //Test 1: Import the variable testPin directly from "Header.h" (success)
-  pinMode(testPin, OUTPUT);
+  //Shift Register Pins
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin, OUTPUT);
 }
 
 
 void loop(){
-  //Test 1: Import the variable testPin directly from "Header.h" (success)
-//  digitalWrite(testPin, HIGH);
-//  delay(200);
-//  digitalWrite(testPin, LOW);
-//  delay(200);
-
-  //Test 2: Use a function of the Solenoid object with pin argument from Header.h
-  for(int i=60; i>20; i--){
-    testSolenoid.Pour(i);
-  }
-  for(int i=20; i<60; i++){
-    testSolenoid.Pour(i);
-  }
+  //Pour solenoid A for one second.
+    solenoidA.Pour(1000);
+    delay(3000);
+    solenoidB.Pour(1000);
+    delay(3000);
 }
