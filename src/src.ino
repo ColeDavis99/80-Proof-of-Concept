@@ -51,7 +51,10 @@ void loop(){
   solenoidB.Pour(1000);
   delay(5000);
 
+  //Pull the platform one revolution of stepper
   plat.Pull(1);
   delay(1000);
+  
+  //Push the platform one revolution of stepper
   plat.Push(1);
 }
