@@ -1,12 +1,18 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-// Shift registers
+// Shift register pins and array of solenoid IDs
 extern const short int latchPin;
 extern const short int clockPin;
 extern const short int dataPin;
-extern const int numsToDisplay[16];
-// uint16_t LED1 = 0b1000000000000000;
+extern const int solenoidIDs[16];
 
+// TB6600 pins - Stepper motor controller
+extern const short int dirPin;
+extern const short int stepPin;
+
+// Stepper motor constants
+extern const unsigned long stepsPerRev;
+extern const short int stepDelay;
 
 #endif
