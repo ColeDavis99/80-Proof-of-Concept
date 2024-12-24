@@ -5,7 +5,8 @@
 class Platform
 {
 private:
-    short int xPos;     //The number representing the current location of the platform's center.
+    //The number representing the current location of the platform's center (how many revolutions away from stepper motor it is)
+    short int xPos;
     
 
 public:
@@ -20,6 +21,9 @@ public:
 
     //Moved platform towards stepper motor X revolutions
     void Pull(unsigned long revs);
+
+    //Calculates the most efficient movement path for pouring drink X relative to platform's current position
+    // TODO
 
     // Getters
     short int getxPos();

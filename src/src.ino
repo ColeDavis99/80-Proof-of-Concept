@@ -5,7 +5,7 @@
 /*==============================
     DEFINE GLOBAL VARIABLES
 ==============================*/
-// Shift registers
+// Shift register pins and solenoid IDs (see Header.h for more details about what a solenoid ID is)
 const short int latchPin = 5;
 const short int clockPin = 6;
 const short int dataPin = 7;
