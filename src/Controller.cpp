@@ -7,3 +7,6 @@ Controller::Controller(){};
 
 //Parameterized contructor
 Controller::Controller(Platform plat, Solenoid* solenoids){};
+
+//Might be used for something eventually
+void Init();
