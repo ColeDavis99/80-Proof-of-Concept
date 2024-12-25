@@ -21,9 +21,6 @@ public:
     //Moved platform towards stepper motor X revolutions
     void Pull(unsigned long revs);
 
-    //Calculates the most efficient movement path for pouring drink X relative to platform's current position
-    // TODO
-
     // Getters
     short int getxPos();
 

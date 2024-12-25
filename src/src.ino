@@ -37,12 +37,14 @@ void setup()
   // Stepper motor controller pins
   pinMode(dirPin, OUTPUT);
   pinMode(stepPin, OUTPUT);
+
+  //Used for debugging
+  Serial.begin(9600);
 }
 
 
 void loop()
 {
-
 //  // Pour solenoid A for one second
 //  solenoids[0].Pour(1000);
 //  delay(5000);

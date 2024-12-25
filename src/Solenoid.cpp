@@ -6,7 +6,7 @@
 Solenoid::Solenoid(){}
 
 // Parameterized Constructor
-Solenoid::Solenoid(int arg_activationNum, short int arg_xPos){
+Solenoid::Solenoid(short int arg_activationNum, short int arg_xPos){
     setactivationNum(arg_activationNum);
     setxPos(arg_xPos);
 }
@@ -41,4 +41,4 @@ int Solenoid::getactivationNum(){return activationNum;};
 
 // Setters
 void Solenoid::setxPos(short int arg_xPos){xPos = arg_xPos;};
-void Solenoid::setactivationNum(int arg_activationNum){activationNum = arg_activationNum;};
+void Solenoid::setactivationNum(short int arg_activationNum){activationNum = arg_activationNum;};
