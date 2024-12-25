@@ -4,8 +4,3 @@
 
 //Default constructor
 Controller::Controller(){};
-
-//Parameterized constructor
-Controller::Controller(){
-
-};

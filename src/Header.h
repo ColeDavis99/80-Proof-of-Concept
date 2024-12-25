@@ -4,6 +4,10 @@
 #include "Platform.h"
 #include "Controller.h"
 
+/*==============================
+    DECLARE GLOBAL VARIABLES
+==============================*/
+
 // Shift register pins and array of solenoid IDs
 // The solenoidIDs array holds each unique value to feed into the shift registers to activate one (and only one) solenoid.
 // The shift registers' output pins can be thought of as the binary representation of whatever number gets fed into it.
@@ -25,10 +29,5 @@ extern const short int stepPin;
 extern const unsigned long stepsPerRev;
 extern const short int stepDelay;
 
-//Declare two solenoid objects
-extern const short int NUM_SOLENOIDS;   // 10 because there are 10 bottles (solenoids) being used physically in the robot.
-extern Solenoid solenoids[];            // Also 10 because there are 10 bottles (solenoids) being used physically in the robot.
 
-//Declare one platform object
-extern Platform plat;
 #endif
