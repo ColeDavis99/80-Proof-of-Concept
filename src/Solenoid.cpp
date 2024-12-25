@@ -1,5 +1,6 @@
 #include "arduino.h"
 #include "Solenoid.h"
+#include "Header.h"
 
 // Default Constructor
 Solenoid::Solenoid(){}

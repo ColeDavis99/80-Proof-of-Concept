@@ -1,5 +1,6 @@
 #include "arduino.h"
 #include "Platform.h"
+#include "Header.h"
 
 // Default Constructor
 Platform::Platform(){}
@@ -27,7 +28,7 @@ void Platform::Push(unsigned long revs) {
 // Moves platform towards stepper motor "i" revolutions
 void Platform::Pull(unsigned long revs){
   digitalWrite(dirPin, HIGH);
-  for (unsigned long i = 0; i < rev; i++){
+  for (unsigned long i = 0; i < revs; i++){
     for (unsigned long q = 0; q < stepsPerRev; q++){
       digitalWrite(stepPin, HIGH);
       delayMicroseconds(stepDelay);

@@ -1,5 +1,8 @@
 #ifndef HEADER_H
 #define HEADER_H
+#include "Solenoid.h"
+#include "Platform.h"
+#include "Controller.h"
 
 // Shift register pins and array of solenoid IDs
 // The solenoidIDs array holds each unique value to feed into the shift registers to activate one (and only one) solenoid.
@@ -10,7 +13,8 @@
 extern const short int latchPin;
 extern const short int clockPin;
 extern const short int dataPin;
-extern const int solenoidIDs[16];
+extern const int solenoidIDs[];         // Holds each solenoids' activation value. This value, or "ID", is what's fed into the shift registers to pour a bottle
+extern const int solenoidPositions[];   // solenoidPositions[3] will hold the x axis position value for the Solenoid object found at solenoids[3] for example
 
 // TB6600 pins - Stepper motor controller
 extern const short int dirPin;
@@ -21,4 +25,10 @@ extern const short int stepPin;
 extern const unsigned long stepsPerRev;
 extern const short int stepDelay;
 
+//Declare two solenoid objects
+extern const short int NUM_SOLENOIDS;   // 10 because there are 10 bottles (solenoids) being used physically in the robot.
+extern Solenoid solenoids[];            // Also 10 because there are 10 bottles (solenoids) being used physically in the robot.
+
+//Declare one platform object
+extern Platform plat;
 #endif

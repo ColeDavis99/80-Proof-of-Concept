@@ -1,6 +1,5 @@
 #ifndef SOLENOID_H
 #define SOLENOID_H
-#include "Header.h"
 
 class Solenoid
 {
