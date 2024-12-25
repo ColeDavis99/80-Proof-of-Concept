@@ -8,7 +8,7 @@
     DECLARE GLOBAL VARIABLES
 ==============================*/
 
-// Shift register pins and array of solenoid IDs
+// Shift register pins and array of solenoid IDs:
 // The solenoidIDs array holds each unique value to feed into the shift registers to activate one (and only one) solenoid.
 // The shift registers' output pins can be thought of as the binary representation of whatever number gets fed into it.
 // You can see lots of shift register YouTube videos where they show the binary encoding of a number with LEDs. Same idea,

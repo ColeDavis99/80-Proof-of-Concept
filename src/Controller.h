@@ -14,9 +14,6 @@ public:
     // Parameterized constructor
      Controller(Platform plat, Solenoid* solenoids);
 
-    // 
-    void Init();
-
     // Moves platform away from stepper motor X revolutions
     void Push(unsigned long revs);
 

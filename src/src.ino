@@ -1,13 +1,15 @@
 #include "Header.h"
 #include "Solenoid.h"
 #include "Platform.h"
+#include "Controller.h"
+
 /*=============================
      INSTANCIATE OBJECTS
 ==============================*/
 // Create a platform object
 Platform plat(0);
 
-// Create the solenoid objects (see about making this a loop)
+// Create the solenoid objects
 Solenoid solenoids[]{
     {solenoidIDs[0], solenoidPositions[0]},
     {solenoidIDs[1], solenoidPositions[1]},
@@ -21,6 +23,10 @@ Solenoid solenoids[]{
     {solenoidIDs[9], solenoidPositions[9]}
 };
 
+//Create the controller object
+Controller controller(plat, solenoids);
+
+
 void setup()
 {
   // Shift register pins
@@ -33,22 +39,23 @@ void setup()
   pinMode(stepPin, OUTPUT);
 }
 
+
 void loop()
 {
 
-  // Pour solenoid A for one second
-  solenoids[0].Pour(1000);
-  delay(5000);
-
-  // Pour solenoid B for one second
-  solenoids[1].Pour(1000);
-  delay(5000);
-
-  // Push the platform one revolution of stepper
-  plat.Push(1);
-  delay(1000);
-
-  // Pull the platform one revolution of stepper
-  plat.Pull(1);
-  delay(1000);
+//  // Pour solenoid A for one second
+//  solenoids[0].Pour(1000);
+//  delay(5000);
+//
+//  // Pour solenoid B for one second
+//  solenoids[1].Pour(1000);
+//  delay(5000);
+//
+//  // Push the platform one revolution of stepper
+//  plat.Push(1);
+//  delay(1000);
+//
+//  // Pull the platform one revolution of stepper
+//  plat.Pull(1);
+//  delay(1000);
 }

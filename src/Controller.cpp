@@ -4,3 +4,6 @@
 
 //Default constructor
 Controller::Controller(){};
+
+//Parameterized contructor
+Controller::Controller(Platform plat, Solenoid* solenoids){};
