@@ -2,17 +2,13 @@
 #define CONTROLLER_H
 #include "Header.h"
 
-class Controller
+struct Controller
 {
-private:
-
-
-public:
     // Default constructor
     Controller();
 
     // Parameterized constructor
-    Controller(Platform plat, Solenoid* solenoids);
+    // Controller(Platform& arg_plat, Solenoid* arg_solenoids, const int* arg_drinkList[]);
 
     //Might be used for something eventually.
     void Init();
@@ -35,11 +31,5 @@ public:
     */
     void TODO_1_or_so();
     void TODO_2_or_so();
-
-    // Getters
-    // short int getxPos();
-
-    // Setters
-    // void setxPos(short int arg_xPos);
 };
 #endif
