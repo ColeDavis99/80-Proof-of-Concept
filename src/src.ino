@@ -25,13 +25,13 @@ const Solenoid solenoids[]{
 };
 
 //Create the controller object
-Controller controller();
+Controller controller(&plat, solenoids, drinkList);
 
 
 void setup()
 {
   // Shift register pins
-  pinMode(latchPin, OUTPUT);  
+  pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
 
@@ -41,11 +41,26 @@ void setup()
 
   //Used for debugging
   Serial.begin(9600);
+
+  //Make sure all the solenoids don't open first startup, stuff like that
+  controller.BootUp();
 }
 
 
 void loop()
 {
+//  Serial.println(controller.drinkList[2][2]);
+//  delay(4000);
+//
+
+  controller.plat->Push(1);
+  delay(3000);
+  controller.plat->Pull(1);
+  delay(3000);
+ 
+  // delay(4000);
+  // controller.solenoids[1].Pour(500);
+  // delay(4000);
 
 
 

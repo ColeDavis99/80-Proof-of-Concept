@@ -4,20 +4,26 @@
 
 struct Controller
 {
+    // References to the objects and data needed to pour a drink
+    Platform* plat;
+    const Solenoid* solenoids;
+    const int** drinkList;
+
+
     // Default constructor
     Controller();
 
     // Parameterized constructor
-    // Controller(Platform& arg_plat, Solenoid* arg_solenoids, const int* arg_drinkList[]);
+    Controller(Platform* arg_plat, Solenoid* arg_solenoids, const int** arg_drinkList);
 
-    //Might be used for something eventually.
-    void Init();
+    // Housekeeping stuff
+    void BootUp();
+    
+    //Make sure all the solenoids don't open simultaneously upon bootup
+    void CloseAllSolenoids();
 
-    // Moves platform away from stepper motor X revolutions
-    void Push(unsigned long revs);
+    void ErrBodyInTheClub();
 
-    // Moved platform towards stepper motor X revolutions
-    void Pull(unsigned long revs);
 
     /*
     Calculates the most efficient movement path for pouring drink X relative to platform's current position
