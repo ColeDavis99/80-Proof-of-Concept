@@ -40,9 +40,9 @@ struct Controller
 
       // Returns the length of a recipe array (excluding the -1 endstop)
       short int RecipeLen(int* recipe);
-      
-      // Returns the solenoid index that the platform is already under, if that solenoid is part of the recipe.
-      bool AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe);
+
+      // Returns whether the platform is already under a solenoid that's part of the recipe.
+      bool AlreadyUnder(short int size, short int platXPos, short int *xPosInRecipe);
 
       void TODO_1_or_so();
       void TODO_2_or_so();

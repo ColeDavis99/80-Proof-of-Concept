@@ -108,7 +108,7 @@ short int Controller::RecipeLen(int* recipe){
   return ctr;
 };
 
-// Returns the solenoid index that the platform is already under, if that solenoid is part of the recipe.
+// Returns whether the platform is already under a solenoid that's part of the recipe.
 bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
   for(short int i=0; i<size; i++){
     if(platXPos == xPosInRecipe[i]){return true;}
