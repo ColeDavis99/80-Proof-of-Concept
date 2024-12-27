@@ -32,16 +32,17 @@ extern const short int stepDelay;
 
 
 // Drink Recipes
-/* For example a recipe array containing [0,1,4,1,9,4] is interpreted as:
+/* For example a recipe array containing [0,1,4,1,9,4,-1] is interpreted as:
 
-    1) Solenoid 0 is in the recipe     [0,x,x,x,x,x]            
-    2) Pour it for one second          [x,1,x,x,x,x]
-    3) Solenoid 4 is in the recipe     [x,x,4,x,x,x]
-    4) Pour it for one second          [x,x,x,1,x,x]
-    5) Solenoid 9 is in the recipe     [x,x,x,x,9,x]
-    6) Pour it for 4 seconds           [x,x,x,x,x,4]
+    1) Solenoid 0 is in the recipe     [0,x,x,x,x,x,x]            
+    2) Pour it for one second          [x,1,x,x,x,x,x]
+    3) Solenoid 4 is in the recipe     [x,x,4,x,x,x,x]
+    4) Pour it for one second          [x,x,x,1,x,x,x]
+    5) Solenoid 9 is in the recipe     [x,x,x,x,9,x,x]
+    6) Pour it for 4 seconds           [x,x,x,x,x,4,x]
+    7) End of recipe                   [x,x,x,x,x,x,-1]
 
-    Cool, 6 ints can tell us how to pour a drink with 3 different ingredients.
+    Cool, 6 ints (and the -1 end) can tell us how to pour a drink with 3 different ingredients.
 */
 extern const int drink1[];
 extern const int drink2[];

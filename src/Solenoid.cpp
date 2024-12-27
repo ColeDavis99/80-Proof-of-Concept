@@ -13,7 +13,6 @@ Solenoid::Solenoid(short int arg_activationNum, short int arg_xPos){
 
 // Opens solenoid (pours) for X milliseconds.
 void Solenoid::Pour(int milliseconds){
-
   // ST_CP LOW to keep LEDs from changing while reading serial data
   digitalWrite(latchPin, LOW);
 
