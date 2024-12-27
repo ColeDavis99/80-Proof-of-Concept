@@ -44,7 +44,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
   short int secInRecipe[size/2];      //List of pour durations in the recipe
   short int xPosInRecipe[size/2];     //List of solenoid coordinates in the recipe
 
-  bool alreadyUnder;                  //Is the platform already under a solenoid that needs to be poured?
+  short int alreadyUnder;             //Is the platform already under a solenoid that needs to be poured?
 
 
 
@@ -71,10 +71,14 @@ void Controller::ErrBodyInTheClub(int* recipe){
 
   //If platform is aready under a solenoid that's in that recipe
   alreadyUnder = AlreadyUnder(size/2, plat->getxPos(), xPosInRecipe);
-  Serial.print("AlreadyUnder? ");
-  Serial.println(alreadyUnder);
+  
+
+  
 
   //Testing the output here
+  Serial.print("AlreadyUnder? ");
+  Serial.println(alreadyUnder);
+  
   Serial.print("Here are the solenoids in the recipe: ");
   for(int i=0; i<size/2; i++){
     Serial.print(solInRecipe[i]);
@@ -104,6 +108,7 @@ short int Controller::RecipeLen(int* recipe){
   return ctr;
 };
 
+// Returns the solenoid index that the platform is already under, if that solenoid is part of the recipe.
 bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
   for(short int i=0; i<size; i++){
     if(platXPos == xPosInRecipe[i]){return true;}
