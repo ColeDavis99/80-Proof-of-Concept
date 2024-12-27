@@ -39,8 +39,11 @@ struct Controller
       */
 
       // Returns the length of a recipe array (excluding the -1 endstop)
-      int RecipeLen(int* recipe);
+      short int RecipeLen(int* recipe);
       
+      // Is the platform already under a solenoid that's part of the recipe?
+      bool AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe);
+
       void TODO_1_or_so();
       void TODO_2_or_so();
 };

@@ -32,15 +32,26 @@ void Controller::ShowPosition(){
   Serial.println(plat->getxPos());
 };
 
-// Gets them shawties out on da flo
+
+
+
+
+// GETS THEM SHAWTIES OWN DA FLO
 void Controller::ErrBodyInTheClub(int* recipe){
-  int size = RecipeLen(recipe);
-  int solInRecipe[size/2];    //List of solenoids in the recipe
-  int secInRecipe[size/2];    //List of pour durations in the recipe
-  short int xPosInRecipe[size/2];   //List of solenoid coordinates in the recipe
+  short int size = RecipeLen(recipe);
+
+  short int solInRecipe[size/2];      //List of solenoid IDs in the recipe
+  short int secInRecipe[size/2];      //List of pour durations in the recipe
+  short int xPosInRecipe[size/2];     //List of solenoid coordinates in the recipe
+
+  bool alreadyUnder;                  //Is the platform already under a solenoid that needs to be poured?
+
+
 
   Serial.print("Elements in recipe: ");
   Serial.println(size);
+
+  //Populate the three arrays declared above
   for(int i=0; i<size; i++){
     //If we're looking at a solenoid's ID
     if(i%2 == 0){     
@@ -54,6 +65,14 @@ void Controller::ErrBodyInTheClub(int* recipe){
   }
 
 
+  //Run the drink pathfinding algorithm
+  //Input: List of solenoid coordinates and platform's current coordinates
+  //Output: Modify the order of values found in solInRecipe and secInRecipe to chronologically be the path the platform takes
+
+  //If platform is aready under a solenoid that's in that recipe
+  alreadyUnder = AlreadyUnder(size/2, plat->getxPos(), xPosInRecipe);
+  Serial.print("AlreadyUnder? ");
+  Serial.println(alreadyUnder);
 
   //Testing the output here
   Serial.print("Here are the solenoids in the recipe: ");
@@ -77,10 +96,17 @@ void Controller::ErrBodyInTheClub(int* recipe){
 
 
 // Returns the length of a recipe array (excluding the -1 endstop)
-int Controller::RecipeLen(int* recipe){
+short int Controller::RecipeLen(int* recipe){
   int ctr = 0;
   while(recipe[ctr] != -1){
     ctr++;
   }
   return ctr;
+};
+
+bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
+  for(short int i=0; i<size; i++){
+    if(platXPos == xPosInRecipe[i]){return true;}
+  }
+  return false;
 };
