@@ -35,11 +35,43 @@ void Controller::ShowPosition(){
 // Gets them shawties out on da flo
 void Controller::ErrBodyInTheClub(int* recipe){
   int size = RecipeLen(recipe);
-  
+  int solInRecipe[size/2];    //List of solenoids in the recipe
+  int secInRecipe[size/2];    //List of pour durations in the recipe
+  short int xPosInRecipe[size/2];   //List of solenoid coordinates in the recipe
+
   Serial.print("Elements in recipe: ");
-  Serial.print(size);
+  Serial.println(size);
   for(int i=0; i<size; i++){
-    Serial.print(recipe[i]);
+    //If we're looking at a solenoid's ID
+    if(i%2 == 0){     
+      solInRecipe[i/2] = recipe[i];
+      xPosInRecipe[i/2] = solenoids[recipe[i]].getxPos();
+    }
+    //If we're looking at a pour duration
+    else{
+      secInRecipe[i/2] = recipe[i];
+    }
+  }
+
+
+
+  //Testing the output here
+  Serial.print("Here are the solenoids in the recipe: ");
+  for(int i=0; i<size/2; i++){
+    Serial.print(solInRecipe[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
+  Serial.print("Here are the solenoid positions in the recipe: ");
+  for(int i=0; i<size/2; i++){
+    Serial.print(xPosInRecipe[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
+  Serial.print("Here are the durations in the recipe: ");
+  for(int i=0; i<size/2; i++){
+    Serial.print(secInRecipe[i]);
+    Serial.print(" ");
   }
 };
 
