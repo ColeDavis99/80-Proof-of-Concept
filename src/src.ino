@@ -7,7 +7,7 @@
      INSTANCIATE OBJECTS
 ==============================*/
 // Create a platform object with current x position
-Platform plat(69);
+Platform plat(90);
 
 // Create the array of solenoid objects
 const Solenoid solenoids[]{

@@ -44,6 +44,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
   short int secInRecipe[size/2];      //List of pour durations in the recipe
   short int xPosInRecipe[size/2];     //List of solenoid coordinates in the recipe
   short int solenoidPos = 0;          //Helper variable
+  short int platxPos = plat->getxPos();//Helper variable
 
   short int furthestLeft = -1;        //How far away is the leftmost solenoid used in the recipe?
   short int furthestRight = -1;       //How far away is the rightmost solenoid used in the recipe?
@@ -56,17 +57,17 @@ void Controller::ErrBodyInTheClub(int* recipe){
   for(int i=0; i<size; i++){
     //If we're looking at a solenoid's ID
     if(i%2 == 0){
-      solenoidPos = solenoids[recipe[i]].getxPos();    //Here's that helper variable mentioned earlier
+      solenoidPos = solenoids[recipe[i]].getxPos();
 
       xPosInRecipe[i/2] = solenoidPos;
       solInRecipe[i/2] = recipe[i];
 
       //Conditionally update furthestLeft and furthestRight
-      if(solenoidPos > plat->getxPos() && abs(solenoidPos - plat->getxPos()) > furthestRight){
-        furthestRight = abs(solenoidPos - plat->getxPos());
+      if(solenoidPos > platxPos && abs(solenoidPos - platxPos) > furthestRight){
+        furthestRight = abs(solenoidPos - platxPos);
       }
-      else if (solenoidPos < plat->getxPos() && abs(solenoidPos - plat->getxPos()) > furthestLeft){
-        furthestLeft = abs(solenoidPos - plat->getxPos());
+      else if (solenoidPos < platxPos && abs(solenoidPos - platxPos) > furthestLeft){
+        furthestLeft = abs(solenoidPos - platxPos);
       }
     }
     //If we're looking at a pour duration
@@ -100,7 +101,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
   }
   Serial.println();
   Serial.print("Current platform position: ");
-  Serial.print(plat->getxPos());
+  Serial.print(platxPos);
   Serial.println();
   Serial.print("Here is the furthest on each side: ");
   Serial.print("L: ");
