@@ -43,20 +43,31 @@ void Controller::ErrBodyInTheClub(int* recipe){
   short int solInRecipe[size/2];      //List of solenoid IDs in the recipe
   short int secInRecipe[size/2];      //List of pour durations in the recipe
   short int xPosInRecipe[size/2];     //List of solenoid coordinates in the recipe
+  short int solenoidPos = 0;          //Helper variable
 
-  short int alreadyUnder;             //Is the platform already under a solenoid that needs to be poured?
-
+  short int furthestLeft = -1;        //How far away is the leftmost solenoid used in the recipe?
+  short int furthestRight = -1;       //How far away is the rightmost solenoid used in the recipe?
 
 
   Serial.print("Elements in recipe: ");
   Serial.println(size);
 
-  //Populate the three arrays declared above
+  //POPULATE THE THREE ARRAYS DECLARED ABOVE
   for(int i=0; i<size; i++){
     //If we're looking at a solenoid's ID
-    if(i%2 == 0){     
+    if(i%2 == 0){
+      solenoidPos = solenoids[recipe[i]].getxPos();    //Here's that helper variable mentioned earlier
+
+      xPosInRecipe[i/2] = solenoidPos;
       solInRecipe[i/2] = recipe[i];
-      xPosInRecipe[i/2] = solenoids[recipe[i]].getxPos();
+
+      //Conditionally update furthestLeft and furthestRight
+      if(solenoidPos > plat->getxPos() && abs(solenoidPos - plat->getxPos()) > furthestRight){
+        furthestRight = abs(solenoidPos - plat->getxPos());
+      }
+      else if (solenoidPos < plat->getxPos() && abs(solenoidPos - plat->getxPos()) > furthestLeft){
+        furthestLeft = abs(solenoidPos - plat->getxPos());
+      }
     }
     //If we're looking at a pour duration
     else{
@@ -64,20 +75,11 @@ void Controller::ErrBodyInTheClub(int* recipe){
     }
   }
 
-
   //Run the drink pathfinding algorithm
-  //Input: List of solenoid coordinates and platform's current coordinates
-  //Output: Modify the order of values found in solInRecipe and secInRecipe to chronologically be the path the platform takes
-
-  //If platform is aready under a solenoid that's in that recipe
-  alreadyUnder = AlreadyUnder(size/2, plat->getxPos(), xPosInRecipe);
-  
 
   
 
-  //Testing the output here
-  Serial.print("AlreadyUnder? ");
-  Serial.println(alreadyUnder);
+  
   
   Serial.print("Here are the solenoids in the recipe: ");
   for(int i=0; i<size/2; i++){
@@ -96,6 +98,33 @@ void Controller::ErrBodyInTheClub(int* recipe){
     Serial.print(secInRecipe[i]);
     Serial.print(" ");
   }
+  Serial.println();
+  Serial.print("Current platform position: ");
+  Serial.print(plat->getxPos());
+  Serial.println();
+  Serial.print("Here is the furthest on each side: ");
+  Serial.print("L: ");
+  Serial.print(furthestLeft);
+  Serial.print(" R: ");
+  Serial.print(furthestRight);
+  Serial.println();
+  if(furthestLeft == -1 && furthestRight == -1){
+    Serial.print("No initial move, only one solenoid in recipe, already under, execute.");
+  }
+  else if(furthestLeft > furthestRight && furthestRight == -1){
+    Serial.print("No initial move, sort descending and execute");
+  }
+  else if(furthestRight > furthestLeft && furthestLeft == -1){
+    Serial.print("No initial move, sort ascending and execute");    
+  }
+  else if(furthestLeft > furthestRight){
+    Serial.print("Initial move right, sort descending and execute");
+  }
+  else{
+    Serial.print("Initial move left, sort ascending and execute");
+ }
+  Serial.println("\n===================================");
+  Serial.println();
 };
 
 
@@ -109,9 +138,9 @@ short int Controller::RecipeLen(int* recipe){
 };
 
 // Returns whether the platform is already under a solenoid that's part of the recipe.
-bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
-  for(short int i=0; i<size; i++){
-    if(platXPos == xPosInRecipe[i]){return true;}
-  }
-  return false;
-};
+// bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
+//   for(short int i=0; i<size; i++){
+//     if(platXPos == xPosInRecipe[i]){return true;}
+//   }
+//   return false;
+// };
