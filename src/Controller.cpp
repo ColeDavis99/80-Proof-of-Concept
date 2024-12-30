@@ -76,43 +76,31 @@ void Controller::ErrBodyInTheClub(int* recipe){
     }
   }
 
-  //Run the drink pathfinding algorithm
+  //Sort solInRecipe asc or desc. secInRecipe gets sorted based on solInRecipe's sort to ensure pour durations don't get scrambled.
   if (furthestLeft == -1 && furthestRight == -1){
     Serial.println("No initial move, only one solenoid in recipe, already under, execute.");
-    //TODO: Nothing (no list to sort since only one element.)
   }
   else if (furthestLeft > furthestRight && furthestRight == -1){
     Serial.println("No initial move, sort descending and execute");
-    //TODO: Sort solInRecipe descending
     SelectionSort(solInRecipe, secInRecipe, size/2, 'd');
   }
   else if (furthestRight > furthestLeft && furthestLeft == -1){
     Serial.println("No initial move, sort ascending and execute");
-    // TODO: Sort solInRecipe ascending
     SelectionSort(solInRecipe, secInRecipe, size/2, 'a');
   }
   else if (furthestLeft > furthestRight){
     Serial.println("Initial move right, sort descending and execute");
-    // TODO: Sort solInRecipe descending
     SelectionSort(solInRecipe, secInRecipe, size/2, 'd');
   }
   else{
     Serial.println("Initial move left, sort ascending and execute");
-    // TODO: Sort solInRecipe ascending
     SelectionSort(solInRecipe, secInRecipe, size/2, 'a');
   }
+  
 
-  Serial.println();
-  for(int i=0; i<size/2; i++){
-    Serial.print(solInRecipe[i]);
-  }
-  Serial.println();
-  for(int i=0; i<size/2; i++){
-    Serial.print(secInRecipe[i]);
-  }
-
-  //TODO: Execute the platform move operation, then the pour operation for each element in solInRecipe (same length as secInRecipe)
-
+  //TODO 12/29/24: Move the platform according to solInRecipe and pour according to secInRecipe
+  
+  
 };
 
 
