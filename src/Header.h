@@ -19,7 +19,7 @@ extern const short int latchPin;
 extern const short int clockPin;
 extern const short int dataPin;
 extern const int solenoidIDs[];         // Holds each solenoids' activation value. This value, or "ID", is what's fed into the shift registers to pour a bottle
-extern const int solenoidPositions[];   // solenoidPositions[3] will hold the x axis position value for the Solenoid object found at solenoids[3] for example
+extern const short int solenoidPositions[];   // solenoidPositions[3] will hold the x axis position value for the Solenoid object found at solenoids[3] for example
 
 // TB6600 pins - Stepper motor controller
 extern const short int dirPin;

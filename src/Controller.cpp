@@ -99,8 +99,22 @@ void Controller::ErrBodyInTheClub(int* recipe){
   
 
   //TODO 12/29/24: Move the platform according to solInRecipe and pour according to secInRecipe
-  
-  
+  for(short int i=0; i<size/2; i++){
+    //Move to the solenoid
+    Serial.print("Moving to ");
+    Serial.print(solenoids[solInRecipe[i]].getxPos());
+    Serial.print(" from ");
+    Serial.println(plat->getxPos());
+    plat->MoveTo(solenoids[solInRecipe[i]].getxPos());
+
+    Serial.println("\nPouring solenoid ");
+    Serial.print(solInRecipe[i]);
+    Serial.print(" for ");
+    Serial.print(secInRecipe[i]);
+    Serial.println(" seconds ");
+    solenoids[solInRecipe[i]].Pour(secInRecipe[i]);
+  }
+  Serial.println("Drink complete.");
 };
 
 
@@ -127,11 +141,11 @@ void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, s
     for (short int q = i + 1; q < size; q++)
     {
       if(ascOrDesc == 'a'){
-        Serial.print("ASCEND");
+//        Serial.print("ASCEND");
         if (solInRecipe[q] < solInRecipe[i]){idx = q;}
       }
       if(ascOrDesc == 'd'){
-        Serial.print("DESCEND");
+//        Serial.print("DESCEND");
         if (solInRecipe[q] > solInRecipe[i]){idx = q;}
       }
     }

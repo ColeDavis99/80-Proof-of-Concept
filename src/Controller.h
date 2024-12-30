@@ -24,9 +24,6 @@ struct Controller
       // Outputs position of platform
       void ShowPosition();
 
-      // Gets them shawties out on da flo
-      void ErrBodyInTheClub(int* recipe);
-
       /*
       Calculates the most efficient movement path for pouring drink X relative to platform's current position
       Algorithm summary:
@@ -34,8 +31,9 @@ struct Controller
       - Move to the furthest solenoid on the side whose furthest solenoid was the lesser distance of the two
       - If the initial move is to the right, sort the drink and duration lists descending
       - If the initial move is to the left, sort the drink and duration lists ascending
-      - Execute the list of movements and pour durations in the list.
-      */
+      - Execute the list of movements and pour durations in the list.*/
+      // Also gets them shawties out on da flo
+      void ErrBodyInTheClub(int* recipe);
 
       // Returns the length of a recipe array (excluding the -1 endstop)
       short int RecipeLen(int* recipe);
