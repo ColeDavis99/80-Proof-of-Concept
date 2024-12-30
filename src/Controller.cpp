@@ -46,8 +46,8 @@ void Controller::ErrBodyInTheClub(int* recipe){
   short int solenoidPos = 0;          //Helper variable
   short int platxPos = plat->getxPos();//Helper variable
 
-  short int furthestLeft = -1;        //How far away is the leftmost solenoid used in the recipe?
-  short int furthestRight = -1;       //How far away is the rightmost solenoid used in the recipe?
+  short int furthestLeft = -1;        //How far away from platform is the leftmost solenoid used in the recipe?
+  short int furthestRight = -1;       //How far away from platform is the rightmost solenoid used in the recipe?
 
 
   Serial.print("Elements in recipe: ");
@@ -77,55 +77,42 @@ void Controller::ErrBodyInTheClub(int* recipe){
   }
 
   //Run the drink pathfinding algorithm
-
-  
-
-  
-  
-  Serial.print("Here are the solenoids in the recipe: ");
-  for(int i=0; i<size/2; i++){
-    Serial.print(solInRecipe[i]);
-    Serial.print(" ");
+  if (furthestLeft == -1 && furthestRight == -1){
+    Serial.println("No initial move, only one solenoid in recipe, already under, execute.");
+    //TODO: Nothing (no list to sort since only one element.)
   }
-  Serial.println();
-  Serial.print("Here are the solenoid positions in the recipe: ");
-  for(int i=0; i<size/2; i++){
-    Serial.print(xPosInRecipe[i]);
-    Serial.print(" ");
+  else if (furthestLeft > furthestRight && furthestRight == -1){
+    Serial.println("No initial move, sort descending and execute");
+    //TODO: Sort solInRecipe descending
+    SelectionSort(solInRecipe, secInRecipe, size/2, 'd');
   }
-  Serial.println();
-  Serial.print("Here are the durations in the recipe: ");
-  for(int i=0; i<size/2; i++){
-    Serial.print(secInRecipe[i]);
-    Serial.print(" ");
+  else if (furthestRight > furthestLeft && furthestLeft == -1){
+    Serial.println("No initial move, sort ascending and execute");
+    // TODO: Sort solInRecipe ascending
+    SelectionSort(solInRecipe, secInRecipe, size/2, 'a');
   }
-  Serial.println();
-  Serial.print("Current platform position: ");
-  Serial.print(platxPos);
-  Serial.println();
-  Serial.print("Here is the furthest on each side: ");
-  Serial.print("L: ");
-  Serial.print(furthestLeft);
-  Serial.print(" R: ");
-  Serial.print(furthestRight);
-  Serial.println();
-  if(furthestLeft == -1 && furthestRight == -1){
-    Serial.print("No initial move, only one solenoid in recipe, already under, execute.");
-  }
-  else if(furthestLeft > furthestRight && furthestRight == -1){
-    Serial.print("No initial move, sort descending and execute");
-  }
-  else if(furthestRight > furthestLeft && furthestLeft == -1){
-    Serial.print("No initial move, sort ascending and execute");    
-  }
-  else if(furthestLeft > furthestRight){
-    Serial.print("Initial move right, sort descending and execute");
+  else if (furthestLeft > furthestRight){
+    Serial.println("Initial move right, sort descending and execute");
+    // TODO: Sort solInRecipe descending
+    SelectionSort(solInRecipe, secInRecipe, size/2, 'd');
   }
   else{
-    Serial.print("Initial move left, sort ascending and execute");
- }
-  Serial.println("\n===================================");
+    Serial.println("Initial move left, sort ascending and execute");
+    // TODO: Sort solInRecipe ascending
+    SelectionSort(solInRecipe, secInRecipe, size/2, 'a');
+  }
+
   Serial.println();
+  for(int i=0; i<size/2; i++){
+    Serial.print(solInRecipe[i]);
+  }
+  Serial.println();
+  for(int i=0; i<size/2; i++){
+    Serial.print(secInRecipe[i]);
+  }
+
+  //TODO: Execute the platform move operation, then the pour operation for each element in solInRecipe (same length as secInRecipe)
+
 };
 
 
@@ -138,10 +125,37 @@ short int Controller::RecipeLen(int* recipe){
   return ctr;
 };
 
-// Returns whether the platform is already under a solenoid that's part of the recipe.
-// bool Controller::AlreadyUnder(short int size, short int platXPos, short int* xPosInRecipe) {
-//   for(short int i=0; i<size; i++){
-//     if(platXPos == xPosInRecipe[i]){return true;}
-//   }
-//   return false;
-// };
+
+// Basic selection sort. Pass an "a" or "d" for ascending or descending.
+// Sorting logic is based on solInRecipe, and secInRecipe array mimics the swaps that happen to it (due to how I set up recipes)
+void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, short int size, char ascOrDesc){
+  short int temp = 0;
+  short int idx = 0;
+
+  for (short int i = 0; i < size; i++)
+  {
+    idx = i;
+
+    for (short int q = i + 1; q < size; q++)
+    {
+      if(ascOrDesc == 'a'){
+        Serial.print("ASCEND");
+        if (solInRecipe[q] < solInRecipe[i]){idx = q;}
+      }
+      if(ascOrDesc == 'd'){
+        Serial.print("DESCEND");
+        if (solInRecipe[q] > solInRecipe[i]){idx = q;}
+      }
+    }
+
+    // SWAPPEM
+    temp = solInRecipe[i];
+    solInRecipe[i] = solInRecipe[idx];
+    solInRecipe[idx] = temp;
+
+    temp = secInRecipe[i];
+    secInRecipe[i] = secInRecipe[idx];
+    secInRecipe[idx] = temp;    
+    return;
+  }
+};

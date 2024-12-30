@@ -40,10 +40,8 @@ struct Controller
       // Returns the length of a recipe array (excluding the -1 endstop)
       short int RecipeLen(int* recipe);
 
-      // Returns whether the platform is already under a solenoid that's part of the recipe.
-      // bool AlreadyUnder(short int size, short int platXPos, short int *xPosInRecipe);
-
-      void TODO_1_or_so();
-      void TODO_2_or_so();
+      //Basic selection sort. Pass an "a" or "d" for ascending or descending.
+      //Sorting logic is based on solInRecipe, and secInRecipe array mimics the swaps that happen to it (due to how I set up recipes)
+      void SelectionSort(short int *solInRecipe, short int *secInRecipe, short int size, char ascOrDesc);
 };
 #endif

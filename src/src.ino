@@ -7,7 +7,7 @@
      INSTANCIATE OBJECTS
 ==============================*/
 // Create a platform object with current x position
-Platform plat(90);
+Platform plat(0);
 
 // Create the array of solenoid objects
 const Solenoid solenoids[]{
@@ -51,42 +51,4 @@ void loop()
 {
   controller.ErrBodyInTheClub(drinkList[2]);
   while(1){}
-  
-/*
-  controller.plat->Push(3);
-  delay(1000);
-  controller.ShowPosition();
-  controller.plat->Pull(1);
-  delay(1000);
-  controller.ShowPosition();
-
-
-  Serial.println(controller.drinkList[2][2]);
-  delay(4000);
-
-  controller.plat->Push(1);
-  delay(3000);
-  controller.plat->Pull(1);
-  delay(3000);
-
-  delay(4000);
-  controller.solenoids[1].Pour(500);
-  delay(4000);
-
-  // Pour solenoid A for one second
-  solenoids[0].Pour(700);
-  delay(2000);
-
-  // Pour solenoid B for one second
-  solenoids[1].Pour(700);
-  delay(2000);
-
-  // Push the platform one revolution of stepper
-  plat.Push(1);
-  delay(1000);
-
-  // Pull the platform one revolution of stepper
-  plat.Pull(1);
-  delay(1000);
-*/
 }
