@@ -7,7 +7,7 @@
      INSTANCIATE OBJECTS
 ==============================*/
 // Create a platform object with current x position
-Platform plat(80);
+Platform plat(0);
 
 // Create the array of solenoid objects
 const Solenoid solenoids[]{
@@ -50,5 +50,8 @@ void setup()
 void loop()
 {
   controller.ErrBodyInTheClub(drinkList[2]);
+  controller.ErrBodyInTheClub(drinkList[2]);
+  controller.ErrBodyInTheClub(drinkList[2]);
+
   while(1){}
 }

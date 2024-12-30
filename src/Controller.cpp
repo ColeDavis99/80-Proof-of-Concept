@@ -38,6 +38,7 @@ void Controller::ShowPosition(){
 
 // GETS THEM SHAWTIES OWN DA FLO
 void Controller::ErrBodyInTheClub(int* recipe){
+  Serial.println("\nBeginning new drink");
   short int size = RecipeLen(recipe);
 
   short int solInRecipe[size/2];      //List of solenoid IDs in the recipe
