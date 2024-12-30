@@ -38,7 +38,7 @@ void Controller::ShowPosition(){
 
 // GETS THEM SHAWTIES OWN DA FLO
 void Controller::ErrBodyInTheClub(int* recipe){
-  Serial.println("\nBeginning new drink");
+  Serial.println("Beginning new drink");
   short int size = RecipeLen(recipe);
   short int solInRecipe[size/2];      //List of solenoid IDs in the recipe
   short int secInRecipe[size/2];      //List of pour durations in the recipe
@@ -115,6 +115,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
     solenoids[solInRecipe[i]].Pour(secInRecipe[i]);
   }
   Serial.println("Drink complete.");
+  Serial.println("==============================\n\n");
 };
 
 
@@ -136,26 +137,25 @@ void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, s
 
   for (short int i = 0; i < size; i++)
   {
-    Serial.println(i);
     idx = i;
 
     for (short int q = i + 1; q < size; q++)
     {
       if(ascOrDesc == 'a'){
-        Serial.println("ASCEND");
+//        Serial.println("ASCEND");
         if (solInRecipe[q] < solInRecipe[idx]){idx = q;}
       }
       if(ascOrDesc == 'd'){
-        Serial.print("DESCEND");
+//        Serial.print("DESCEND");
         if (solInRecipe[q] > solInRecipe[idx]){idx = q;}
       }
     }
 
     // SWAPPEM
-    Serial.println("Swapping");
-    Serial.print(solInRecipe[i]);
-    Serial.print(" and ");
-    Serial.println(solInRecipe[idx]);
+//    Serial.println("Swapping");
+//    Serial.print(solInRecipe[i]);
+//    Serial.print(" and ");
+//    Serial.println(solInRecipe[idx]);
     temp = solInRecipe[i];
     solInRecipe[i] = solInRecipe[idx];
     solInRecipe[idx] = temp;
