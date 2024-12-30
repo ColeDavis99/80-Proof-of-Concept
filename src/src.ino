@@ -50,8 +50,6 @@ void setup()
 void loop()
 {
   controller.ErrBodyInTheClub(drinkList[2]);
-  controller.ErrBodyInTheClub(drinkList[2]);
-  controller.ErrBodyInTheClub(drinkList[2]);
 
   while(1){}
 }

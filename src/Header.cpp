@@ -21,7 +21,7 @@ const short int stepDelay = 9;
 // Drink Recipes
 const int drink1[] = {1,2,-1};     //Pour solenoid 1 for 2 seconds
 const int drink2[] = {3,2,-1};     //Pour solenoid 3 for 2 seconds
-const int drink3[] = {0,2,1,9,-1}; //Pour solenoid 6 for 7 seconds, Pour solenoid 8 for 9 second
+const int drink3[] = {0,2,1,9,8,3,4,2,2,4,5,6,-1}; //Pour solenoid 6 for 7 seconds, Pour solenoid 8 for 9 second
 
 // ... and our drink list
 const int* drinkList[3] = {drink1, drink2, drink3};
