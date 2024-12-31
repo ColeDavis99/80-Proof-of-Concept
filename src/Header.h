@@ -3,6 +3,8 @@
 #include "Solenoid.h"
 #include "Platform.h"
 #include "Controller.h"
+#include <MemoryFree.h>
+
 
 
 /*==============================
@@ -44,10 +46,11 @@ extern const short int stepDelay;
 
     Cool, 6 ints (and the -1 end) can tell us how to pour a drink with 3 different ingredients.
 */
-extern const int drink1[];
-extern const int drink2[];
-extern const int drink3[];
+extern const short int drink1[];
+extern const short int drink2[];
+extern const short int drink3[];
+extern const short int drink4[];
 
-extern const int *drinkList[];
+extern const short int* drinkList[];
 
 #endif

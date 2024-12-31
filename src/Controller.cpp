@@ -37,7 +37,7 @@ void Controller::ShowPosition(){
 
 
 // GETS THEM SHAWTIES OWN DA FLO
-void Controller::ErrBodyInTheClub(int* recipe){
+void Controller::ErrBodyInTheClub(short int* recipe){
   Serial.println("Beginning new drink");
   short int size = RecipeLen(recipe);
   short int solInRecipe[size/2];      //List of solenoid IDs in the recipe
@@ -98,7 +98,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
   }
   
 
-  //TODO 12/29/24: Move the platform according to solInRecipe and pour according to secInRecipe
+  //Move the platform according to solInRecipe and pour according to secInRecipe
   for(short int i=0; i<size/2; i++){
     //Move to the solenoid
     Serial.print("Moving to ");
@@ -120,7 +120,7 @@ void Controller::ErrBodyInTheClub(int* recipe){
 
 
 // Returns the length of a recipe array (excluding the -1 endstop)
-short int Controller::RecipeLen(int* recipe){
+short int Controller::RecipeLen(short int* recipe){
   int ctr = 0;
   while(recipe[ctr] != -1){
     ctr++;

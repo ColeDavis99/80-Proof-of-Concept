@@ -33,10 +33,10 @@ struct Controller
       - If the initial move is to the left, sort the drink and duration lists ascending
       - Execute the list of movements and pour durations in the list.*/
       // Also gets them shawties out on da flo
-      void ErrBodyInTheClub(int* recipe);
+      void ErrBodyInTheClub(short int* recipe);
 
       // Returns the length of a recipe array (excluding the -1 endstop)
-      short int RecipeLen(int* recipe);
+      short int RecipeLen(short int* recipe);
 
       //Basic selection sort. Pass an "a" or "d" for ascending or descending.
       //Sorting logic is based on solInRecipe, and secInRecipe array mimics the swaps that happen to it (due to how I set up recipes)
