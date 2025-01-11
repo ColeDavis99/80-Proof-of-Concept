@@ -15,7 +15,7 @@ Solenoid::Solenoid(short int arg_activationNum, short int arg_xPos){
 void Solenoid::Pour(int milliseconds){
   // ST_CP LOW to keep LEDs from changing while reading serial data
   digitalWrite(latchPin, LOW);
-
+  
   // Shift out the bits (Have to double down since I'm using two of them)
   shiftOut(dataPin, clockPin, MSBFIRST, activationNum >> 8);
   shiftOut(dataPin, clockPin, MSBFIRST, activationNum);
@@ -26,12 +26,16 @@ void Solenoid::Pour(int milliseconds){
 
   // ST_CP LOW to keep LEDs from changing while reading serial data
   digitalWrite(latchPin, LOW);
-
+  
   // Shift out "0" to register.
+  shiftOut(dataPin, clockPin, MSBFIRST, 0 >> 8);
   shiftOut(dataPin, clockPin, MSBFIRST, 0);
-
+  
   // Output "0" so no more solenoid activation
   digitalWrite(latchPin, HIGH);
+
+  //Let them dribbles fall out of the solenoid valve
+  delay(500);
 }
 
 // Getters

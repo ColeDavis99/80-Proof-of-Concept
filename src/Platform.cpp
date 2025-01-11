@@ -23,6 +23,9 @@ void Platform::Push(short int revs) {
     //Update current position of platform
     xPos++;
   }
+
+  // Little delay cuz why not
+  delay(250);
 };
 
 // Moves platform towards stepper motor "i" revolutions
@@ -38,6 +41,9 @@ void Platform::Pull(short int revs){
     //Update current position of platform
     xPos--;
   }
+
+  //Little delay cuz why not
+  delay(250);
 };
 
 void Platform::MoveTo(short int new_xPos){

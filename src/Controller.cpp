@@ -112,7 +112,7 @@ void Controller::ErrBodyInTheClub(short int* recipe){
     Serial.print(" for ");
     Serial.print(secInRecipe[i]);
     Serial.println(" seconds ");
-    solenoids[solInRecipe[i]].Pour(secInRecipe[i]);
+    solenoids[solInRecipe[i]].Pour(secInRecipe[i] * 1000);  //Convert seconds to ms
   }
   Serial.println("Drink complete.");
   Serial.println("==============================\n\n");
@@ -132,8 +132,8 @@ short int Controller::RecipeLen(short int* recipe){
 // Basic selection sort. Pass an "a" or "d" for ascending or descending.
 // Sorting logic is based on solInRecipe, and secInRecipe array mimics the swaps that happen to it (due to how I set up recipes)
 void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, short int size, char ascOrDesc){
-  short int temp = 0;
-  short int idx = 0;
+  short int temp;
+  short int idx;
 
   for (short int i = 0; i < size; i++)
   {
@@ -142,20 +142,20 @@ void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, s
     for (short int q = i + 1; q < size; q++)
     {
       if(ascOrDesc == 'a'){
-//        Serial.println("ASCEND");
+        //Serial.println("ASCEND");
         if (solInRecipe[q] < solInRecipe[idx]){idx = q;}
       }
       if(ascOrDesc == 'd'){
-//        Serial.print("DESCEND");
+        //Serial.print("DESCEND");
         if (solInRecipe[q] > solInRecipe[idx]){idx = q;}
       }
     }
 
     // SWAPPEM
-//    Serial.println("Swapping");
-//    Serial.print(solInRecipe[i]);
-//    Serial.print(" and ");
-//    Serial.println(solInRecipe[idx]);
+    //Serial.println("Swapping");
+    //Serial.print(solInRecipe[i]);
+    //Serial.print(" and ");
+    //Serial.println(solInRecipe[idx]);
     temp = solInRecipe[i];
     solInRecipe[i] = solInRecipe[idx];
     solInRecipe[idx] = temp;
