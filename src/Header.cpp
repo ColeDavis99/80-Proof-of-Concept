@@ -7,9 +7,9 @@
 const short int latchPin = 5;
 const short int clockPin = 6;
 const short int dataPin = 7;
-const int solenoidIDs[] =       {1, 2, 4, 8, 16, 32, 64}; // 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768
-//const short int solenoidPositions[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90};
-const short int solenoidPositions[] = {145, 188, 231, 274, 317, 360, 403};
+const unsigned int solenoidIDs[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768}; // 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768
+// const short int solenoidPositions[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90};
+const short int solenoidPositions[] = {148, 191, 231, 274, 315, 357, 400, 426, 426, 426, 426, 426, 426, 426, 426, 426};
 
 // TB6600 pins - Stepper motor controller
 const short int dirPin = 2;

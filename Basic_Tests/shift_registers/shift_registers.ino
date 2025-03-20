@@ -19,9 +19,6 @@ void setup(){
   digitalWrite(clearPin, LOW);
   delay(100);
   digitalWrite(clearPin, HIGH);
-
-
-
 }
 
 
@@ -49,12 +46,26 @@ void loop(){
     digitalWrite(latchPin, LOW);
    
     // Shift out the bits (Have to double down since I'm using two of them)
-    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[i] >> 8);
-    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[i]);
+    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[9] >> 8);
+    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[9]);
 
     // ST_CP HIGH change LEDs
     digitalWrite(latchPin, HIGH);
-    delay(500);
+    delay(300);
+
+
+
+
+    // ST_CP LOW to keep LEDs from changing while reading serial data
+    digitalWrite(latchPin, LOW);
+   
+    // Shift out the bits (Have to double down since I'm using two of them)
+    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[0] >> 8);
+    shiftOut(dataPin, clockPin, MSBFIRST, numsToDisplay[0]);
+
+    // ST_CP HIGH change LEDs
+    digitalWrite(latchPin, HIGH);
+    delay(300);
   }
   
 //  for(int i=0; i<256; i++){
