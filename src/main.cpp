@@ -84,20 +84,40 @@ void setup()
 
 void loop()
 {
-    rightState = digitalRead(rightSwitch); // Read the state of the switch
-    Serial.println("DUDE");
-    if (rightState == 0)
-    { // If the switch is pressed (LOW state)
-        // Perform actions when the switch is pressed
-        Serial.println("Switch is pressed");
+    rightState = digitalRead(rightSwitch); // Read the state of the right switch
+    leftState = digitalRead(leftSwitch);   // Read the state of the left switch
+
+    if (rightState == 0 and leftState == 0)
+    {
+        // Serial.println("Left");
+        lcd.setCursor(0, rownum);
+        lcd.clear();
+        lcd.print("Left");
+    }
+    else if (rightState == 1 and leftState == 1)
+    {
+        // Serial.println("Right");
+        lcd.setCursor(0, rownum);
+        lcd.clear();
+        lcd.print("Right");
+    }
+    else if (rightState == 0 and leftState == 1)
+    {
+        // Serial.println("Neither");
+        lcd.setCursor(0, rownum);
+        lcd.clear();
+        lcd.print("Nothing");
     }
     else
-    { // If the switch is not pressed (HIGH state)
-        // Perform actions when the switch is not pressed
-        Serial.println("Switch is not pressed");
+    {
+        lcd.setCursor(0, rownum);
+        lcd.clear();
+        lcd.print("Huh?");
     }
 
     delay(100); // Add a small delay to avoid rapid polling
+
+
 
     // controller.ErrBodyInTheClub(drinkList[2]);
 
