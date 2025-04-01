@@ -44,6 +44,14 @@ Controller controller(&plat, solenoids);
 // the  third parameter is how many columns are on your screen
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+//Switch input pins
+const int leftSwitch = 9;
+const int rightSwitch = 8;
+
+//Switch bools (for determining if switch is left or right)
+bool leftState = 0;
+bool rightState = 0;
+
 // For toggling which LCD row is written to (0 = top 1 = bottom)
 bool rownum = 0;
 
@@ -59,6 +67,10 @@ void setup()
     pinMode(dirPin, OUTPUT);
     pinMode(stepPin, OUTPUT);
 
+    // Input switch input pins
+    pinMode(leftSwitch, INPUT_PULLUP);
+    pinMode(rightSwitch, INPUT_PULLUP);
+
     // Used for debugging
     Serial.begin(9600);
 
@@ -72,6 +84,21 @@ void setup()
 
 void loop()
 {
+    rightState = digitalRead(rightSwitch); // Read the state of the switch
+    Serial.println("DUDE");
+    if (rightState == 0)
+    { // If the switch is pressed (LOW state)
+        // Perform actions when the switch is pressed
+        Serial.println("Switch is pressed");
+    }
+    else
+    { // If the switch is not pressed (HIGH state)
+        // Perform actions when the switch is not pressed
+        Serial.println("Switch is not pressed");
+    }
+
+    delay(100); // Add a small delay to avoid rapid polling
+
     // controller.ErrBodyInTheClub(drinkList[2]);
 
     // controller.plat->Pull(5);
@@ -87,7 +114,7 @@ void loop()
     //     solenoids[i].Pour(300);
     // }
 
-
+    /*============================================================
     // wait  for a second
     delay(1000);
     // tell the screen to write on the top row
@@ -101,8 +128,7 @@ void loop()
     // tell the screen to write “Arduino_uno_guy”  on the bottom row
     // you can change whats in the quotes to be what you want  it to be!
     lcd.print("HAAAAWWWG");
-
-
+    ==================================================================*/
 
     // while(1){};
     
