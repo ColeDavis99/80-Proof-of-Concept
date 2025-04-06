@@ -48,12 +48,16 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 const int leftSwitch = 9;
 const int rightSwitch = 8;
 
+//Button input pin
+const int buttonPin = 10;
+
 //Switch bools (for determining if switch is left or right)
 bool leftState = 0;
 bool rightState = 0;
 
-// For toggling which LCD row is written to (0 = top 1 = bottom)
-bool rownum = 0;
+//Counter to keep track of which drink is showing on LCD (indexes into drinkListNames[])
+int drinkListIndex = 0;
+
 
 void setup()
 {
@@ -71,6 +75,9 @@ void setup()
     pinMode(leftSwitch, INPUT_PULLUP);
     pinMode(rightSwitch, INPUT_PULLUP);
 
+    // Input button input pin
+    pinMode(buttonPin, INPUT_PULLUP);
+
     // Used for debugging
     Serial.begin(9600);
 
@@ -87,35 +94,37 @@ void loop()
     rightState = digitalRead(rightSwitch); // Read the state of the right switch
     leftState = digitalRead(leftSwitch);   // Read the state of the left switch
 
-    if (rightState == 0 and leftState == 0)
-    {
-        // Serial.println("Left");
-        lcd.setCursor(0, rownum);
+
+    if (rightState == 0 and leftState == 0) // Left on switch
+    {   if(drinkListIndex == 0){drinkListIndex = NUMBER_RECIPES;} //Prevent walking off array
+        drinkListIndex--;
+        lcd.setCursor(0, 0);
         lcd.clear();
-        lcd.print("Left");
+        lcd.print(drinkListNames[drinkListIndex]);
     }
-    else if (rightState == 1 and leftState == 1)
+    else if (rightState == 1 and leftState == 1) // Right on switch
     {
-        // Serial.println("Right");
-        lcd.setCursor(0, rownum);
+        if (drinkListIndex == NUMBER_RECIPES-1){drinkListIndex = -1;} // Prevent walking off array
+        drinkListIndex++;
+        lcd.setCursor(0, 0);
         lcd.clear();
-        lcd.print("Right");
+        lcd.print(drinkListNames[drinkListIndex]);
     }
-    else if (rightState == 0 and leftState == 1)
+    else if (rightState == 0 and leftState == 1) // No switch input
     {
-        // Serial.println("Neither");
-        lcd.setCursor(0, rownum);
-        lcd.clear();
-        lcd.print("Nothing");
-    }
-    else
-    {
-        lcd.setCursor(0, rownum);
-        lcd.clear();
-        lcd.print("Huh?");
+        ;//No op
     }
 
-    delay(100); // Add a small delay to avoid rapid polling
+    // Pour button was pressed
+    if(digitalRead(buttonPin) == 0){
+        lcd.setCursor(0, 0);
+        lcd.clear();
+        lcd.print("Pouring");
+        lcd.setCursor(0,1);
+        lcd.print(drinkListNames[drinkListIndex]);
+    }
+
+    delay(200); // Add a small delay to avoid rapid polling
 
 
 
@@ -134,21 +143,6 @@ void loop()
     //     solenoids[i].Pour(300);
     // }
 
-    /*============================================================
-    // wait  for a second
-    delay(1000);
-    // tell the screen to write on the top row
-    lcd.setCursor(0, rownum);
-    // tell the screen to write “hello, from” on the top  row
-    lcd.print("CRANK AGHT");
-    // Toggle which row is written to
-    rownum = !rownum;
-    // tell the screen to write on the bottom  row
-    lcd.setCursor(0, rownum);
-    // tell the screen to write “Arduino_uno_guy”  on the bottom row
-    // you can change whats in the quotes to be what you want  it to be!
-    lcd.print("HAAAAWWWG");
-    ==================================================================*/
 
     // while(1){};
     

@@ -49,6 +49,8 @@ extern const short int drink2[];
 extern const short int drink3[];
 extern const short int drink4[];
 
+extern const short int NUMBER_RECIPES;
 extern const short int* drinkList[];
+extern const char *drinkListNames[];
 
 #endif

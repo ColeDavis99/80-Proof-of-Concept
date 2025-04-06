@@ -33,9 +33,6 @@ void Controller::ShowPosition(){
 };
 
 
-
-
-
 // GETS THEM SHAWTIES OWN DA FLO
 void Controller::ErrBodyInTheClub(short int* recipe){
   Serial.println("Beginning new drink");
@@ -169,5 +166,4 @@ void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, s
     Serial.print(solInRecipe[i]);
     Serial.print(", ");
   }
-  
 };
