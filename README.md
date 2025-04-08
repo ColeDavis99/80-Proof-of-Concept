@@ -1,2 +1,2 @@
 # (80) Proof of Concept
-Robotic bartender! Gonna update this readme and the rest of the documentation.
+Robotic bartender! About to update this readme and the rest of the documentation.
