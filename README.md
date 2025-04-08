@@ -1,3 +1,3 @@
-# Inebriator
+# (80) Proof of Concept
 
-## I'll write all this stuff up once it's operational ya feel, G?
+Robotic bartender! Gonna update this readme and the rest of the documentation.
