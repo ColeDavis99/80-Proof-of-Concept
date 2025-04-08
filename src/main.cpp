@@ -32,8 +32,8 @@ const Solenoid solenoids[]{
 };
 
 // Create a platform object with current x position
-Platform plat(0);
-// Platform plat(solenoids[6].getxPos());
+// Platform plat(0);
+Platform plat(solenoids[2].getxPos());
 
 // Create the controller object
 Controller controller(&plat, solenoids);
@@ -91,6 +91,7 @@ void setup()
 
 void loop()
 {
+
     rightState = digitalRead(rightSwitch); // Read the state of the right switch
     leftState = digitalRead(leftSwitch);   // Read the state of the left switch
 
@@ -122,9 +123,25 @@ void loop()
         lcd.print("Pouring");
         lcd.setCursor(0,1);
         lcd.print(drinkListNames[drinkListIndex]);
+        controller.ErrBodyInTheClub(drinkList[drinkListIndex]);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print(drinkListNames[drinkListIndex]);
     }
-
     delay(200); // Add a small delay to avoid rapid polling
+
+
+
+
+    // controller.plat->Pull(400);
+    // controller.plat->Push(40);
+    // while(1){};
+
+
+
+
+
+
 
 
 
