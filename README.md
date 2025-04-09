@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 80 Proof of Concept
 
 ### Robotic Bartender!
@@ -17,3 +18,8 @@ MEDUSA WIRING
 
 ![alt text](20250408_220443.jpg)
 Neat-o
+=======
+# (80) Proof of Concept
+
+Robotic bartender! Gonna update this readme and the rest of the documentation.
+>>>>>>> ec9325677f391050e666a1eca0bcb0d04629c42d
