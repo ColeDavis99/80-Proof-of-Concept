@@ -1,25 +1,19 @@
-<<<<<<< HEAD
-# 80 Proof of Concept
+# Proof of Concept
 
 ### Robotic Bartender!
 Here's a few of her glamour shots. Parts list and more detailed schematics to come...
 
-![alt text](20250408_220319.jpg)
+![alt text](Documentation/20250408_220319.jpg)
 ROBOT
 
-![alt text](20250408_220527.jpg)
+![alt text](Documentation/20250408_220527.jpg)
 WOWOWOW
 
-![alt text](20250408_220552.jpg)
+![alt text](Documentation/20250408_220552.jpg)
 Now that's a robot wow
 
-![alt text](20250408_220454.jpg)
+![alt text](Documentation/20250408_220454.jpg)
 MEDUSA WIRING
 
-![alt text](20250408_220443.jpg)
+![alt text](Documentation/20250408_220443.jpg)
 Neat-o
-=======
-# (80) Proof of Concept
-
-Robotic bartender! Gonna update this readme and the rest of the documentation.
->>>>>>> ec9325677f391050e666a1eca0bcb0d04629c42d
