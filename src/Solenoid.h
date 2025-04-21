@@ -5,7 +5,7 @@ class Solenoid
 {
 private:
     short int activationNum;  //The number that gets fed to the shift registers to activate this specific solenoid's relay (to pour)
-    short int xPos;           //The number representing the fixed location of the solenoid. "How many revolutions away from the stepper motor am I"
+    short int xPos;     //The number representing the fixed location of the solenoid. "How many revolutions away from the stepper motor am I"
     
 
 public:
@@ -20,7 +20,7 @@ public:
 
     // Getters
     short int getxPos();
-    short int getactivationNum();
+    int getactivationNum();
 
     // Setters
     void setxPos(short int arg_xPos);
