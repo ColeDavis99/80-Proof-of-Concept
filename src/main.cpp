@@ -33,7 +33,7 @@ const Solenoid solenoids[]{
 
 // Create a platform object with current x position
 // Platform plat(0);
-Platform plat(solenoids[3].getxPos());
+Platform plat(solenoids[0].getxPos());
 
 // Create the controller object
 Controller controller(&plat, solenoids);
