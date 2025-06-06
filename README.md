@@ -1,5 +1,7 @@
 # Proof of Concept
 
+Check it out on YouTube: https://www.youtube.com/shorts/DfpsrQ0xZOI
+
 ### Robotic Bartender!
 Here's a few of her glamour shots. Parts list and more detailed schematics to come...
 
