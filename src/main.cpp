@@ -165,7 +165,7 @@ void loop()
             {
                 lcd.setCursor(i, 1);
                 lcd.print("*");
-                delay(125);
+                delay(100);
             }
             lcd.setCursor(0, 0);
             lcd.clear();

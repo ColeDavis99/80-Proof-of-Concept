@@ -32,10 +32,11 @@ const short int drink5[] = {4,2,-1};
 const short int drink6[] = {5,2,-1};
 const short int drink7[] = {6,2,-1};
 const short int drink8[] = {7,2,-1};
+const short int returnHome[] = {7,0,-1}; //Pour solenoid 8 (rightmost) for 0 seconds
 
 // ... and our drink list
-const short int NUMBER_RECIPES = 8;
-const short int *drinkList[NUMBER_RECIPES] = {drink1, drink2, drink3, drink4, drink5, drink6, drink7, drink8};
+const short int NUMBER_RECIPES = 9;
+const short int *drinkList[NUMBER_RECIPES] = {drink1, drink2, drink3, drink4, drink5, drink6, drink7, drink8, returnHome};
 
 // ... and the names of the drinks
 const char *drinkListNames[] = {
@@ -46,5 +47,6 @@ const char *drinkListNames[] = {
     "Drink #5",
     "Drink #6",
     "Drink #7",
-    "Drink #8"
+    "Drink #8",
+    "Return Home"
 };
