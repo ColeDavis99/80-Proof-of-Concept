@@ -41,5 +41,9 @@ struct Controller
       //Basic selection sort. Pass an "a" or "d" for ascending or descending.
       //Sorting logic is based on solInRecipe, and secInRecipe array mimics the swaps that happen to it (due to how I set up recipes)
       void SelectionSort(short int *solInRecipe, short int *secInRecipe, short int size, char ascOrDesc);
+
+      //Used for manually positioning the platform if something goes awry.
+      //Admin should position platform underneath the rightmost solenoid.
+      void AdminCalibrate(const int leftSwitch, const int rightSwitch, const int buttonPin);
 };
 #endif

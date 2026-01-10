@@ -30,6 +30,8 @@ extern const short int stepPin;
 extern const unsigned long stepsPerRev;
 extern const short int stepDelay;
 
+// Calibration mode - How long to hold down button before entering.
+extern const int calibrateModeHoldDuration;
 
 // Drink Recipes
 /* For example a recipe array containing [0,1,4,1,9,4,-1] is interpreted as:

@@ -20,6 +20,9 @@ const short int stepPin = 3;
 const unsigned long stepsPerRev = 6400;
 const short int stepDelay = 10; //7 originally, updated to 10 on Apr/7/25
 
+// Calibration mode - How long to hold down button before entering.
+const int calibrateModeHoldDuration = 4000;
+
 // Drink Recipes
 const short int drink1[] = {0,2,-1};    //Pour solenoid 0 for 2 seconds
 const short int drink2[] = {1,2,-1};    //Pour solenoid 1 for 2 seconds

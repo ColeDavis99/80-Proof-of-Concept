@@ -58,6 +58,10 @@ bool rightState = 0;
 //Counter to keep track of which drink is showing on LCD (indexes into drinkListNames[])
 int drinkListIndex = 0;
 
+//Timer varible used for determining length of button hold, alongside millis()
+unsigned long myTime = 0;
+bool enteredAdminMode = 0;
+
 
 void setup()
 {
@@ -87,6 +91,8 @@ void setup()
     // initialize lcd screen then turn on the backlight
     lcd.init();
     lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print("sup");
 }
 
 void loop()
@@ -116,17 +122,54 @@ void loop()
         ;//No op
     }
 
-    // Pour button was pressed
+    // Pour button was pressed (if it's held for calibrateModeHoldDuration seconds, then enter Calibrate mode)
     if(digitalRead(buttonPin) == 0){
-        lcd.setCursor(0, 0);
-        lcd.clear();
-        lcd.print("Pouring");
-        lcd.setCursor(0,1);
-        lcd.print(drinkListNames[drinkListIndex]);
-        controller.ErrBodyInTheClub(drinkList[drinkListIndex]);
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print(drinkListNames[drinkListIndex]);
+
+        //Start the timer to see if it's held
+        myTime = millis();
+        while (digitalRead(buttonPin) == 0 && enteredAdminMode == 0){
+            if(millis() - myTime >= calibrateModeHoldDuration){
+                enteredAdminMode = 1;
+                
+                lcd.setCursor(0, 0);
+                lcd.clear();
+                lcd.print("Move to bottle 8");
+                lcd.setCursor(0, 1);
+                lcd.print("(rightmost one)");
+
+                controller.AdminCalibrate(leftSwitch, rightSwitch, buttonPin);
+            }
+            delay(200);
+        }
+
+        //Pour the drink
+        if(enteredAdminMode == 0){
+            lcd.setCursor(0, 0);
+            lcd.clear();
+            lcd.print("Pouring");
+            lcd.setCursor(0, 1);
+            lcd.print(drinkListNames[drinkListIndex]);
+            controller.ErrBodyInTheClub(drinkList[drinkListIndex]);
+            lcd.clear();
+            lcd.setCursor(0, 0);
+            lcd.print(drinkListNames[drinkListIndex]);
+        }
+
+        // Pretty admin mode exit screen
+        else{
+            enteredAdminMode = 0;
+            lcd.setCursor(0, 0);
+            lcd.clear();
+            lcd.print("Exiting");
+            for (short i = 0; i < 16; i++)
+            {
+                lcd.setCursor(i, 1);
+                lcd.print("*");
+                delay(125);
+            }
+            lcd.setCursor(0, 0);
+            lcd.clear();
+        }
     }
     delay(200); // Add a small delay to avoid rapid polling
 
@@ -136,10 +179,6 @@ void loop()
     // controller.plat->Pull(400);
     // controller.plat->Push(40);
     // while(1){};
-
-
-
-
 
 
 

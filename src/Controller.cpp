@@ -166,4 +166,38 @@ void Controller::SelectionSort(short int* solInRecipe, short int* secInRecipe, s
     Serial.print(solInRecipe[i]);
     Serial.print(", ");
   }
+
+  return;
 };
+
+// Used for manually positioning the platform if something goes awry.
+// Admin should position platform underneath the rightmost solenoid.
+void Controller::AdminCalibrate(const int leftSwitch, const int rightSwitch, const int buttonPin){
+  int leftState;
+  int rightState;
+
+  delay(4000);
+  while (digitalRead(buttonPin) != 0){
+    rightState = digitalRead(rightSwitch); // Read the state of the right switch
+    leftState = digitalRead(leftSwitch);   // Read the state of the left switch
+
+    if (rightState == 0 and leftState == 0) // Left on switch
+    {
+      plat->Pull(1);
+    }
+    else if (rightState == 1 and leftState == 1) // Right on switch
+    {
+      plat->Push(1);
+    }
+    else if (rightState == 0 and leftState == 1) // No switch input
+    {
+      ; // No op
+    }
+  }
+
+  // Set this to the x-coordinate of the rightmost bottle on the robot
+  // Check solenoidPositions[] in Header.cpp
+  plat->setxPos(422);
+
+  return;
+  };
